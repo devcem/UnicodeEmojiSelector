@@ -1,2 +1,8 @@
 # UnicodeEmojiSelector
-Unicode Emoji Selector For Web
+I know, there are a lot of emoji selector but i couldn't find any selector with only unicode not images. This plugin provides emoji selector without any CSS or image asset requeirement. It only has one javascript file to include.
+
+# Usage
+UnicodeEmoji.init('.input');
+
+# Thanks
+https://github.com/amio/emoji.json
