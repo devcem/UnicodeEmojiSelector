@@ -3,6 +3,8 @@ I know, there are a lot of emoji selector but i couldn't find any selector with 
 
 This is currently under extremely active development, and you probably shouldn't use it unless you like broken software.
 
+Demo : http://imagets.com/shared/UnicodeEmojiSelector/
+
 ![UnicodeEmojiSelector](http://imagets.com/shared/unicodeEmoji.jpg)
 
 ## Usage
