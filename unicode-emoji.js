@@ -28,8 +28,9 @@ var UnicodeEmoji = {
 		var iconElement = document.createElement('li');
 		iconElement.innerHTML = icon;
 		iconElement.parent    = parent;
+		iconElement.textBox   = textBox;
 		iconElement.onclick   = function(){
-			textBox.value+=this.innerHTML;
+			this.textBox.value = this.innerHTML;
 			this.parent.remove();
 		}
 
@@ -38,15 +39,17 @@ var UnicodeEmoji = {
 	},
 	dropdown : function(parent, selectButton){
 		var dropdownElement = document.createElement('div');
+
+		var rect = selectButton.getBoundingClientRect();
 		var computedButton  = window.getComputedStyle(selectButton);
 		var computedParent  = window.getComputedStyle(parent);
 
 		dropdownElement.style.cssText = UnicodeEmoji.styles.dropdown;
 		dropdownElement.className = 'emojiIcon';
 
-		dropdownElement.style.width = 200;
-		dropdownElement.style.right = parseInt(computedButton.right)-parseInt(computedButton.width)/2+6;
-		dropdownElement.style.top   = parseInt(computedButton.top);
+		dropdownElement.style.width = 200 + 'px';
+		dropdownElement.style.left  = parseInt(rect.left)-parseInt(dropdownElement.style.width) + 'px';
+		dropdownElement.style.top   = parseInt(rect.top) + 'px';
 
 		for(icon in UnicodeEmoji.icons){
 			icon = UnicodeEmoji.icons[icon];
@@ -54,26 +57,36 @@ var UnicodeEmoji = {
 			UnicodeEmoji.addIcon(icon, dropdownElement, parent);
 		}
 
-		window.document.body.insertBefore(dropdownElement, parent);
+
+		window.document.body.appendChild(dropdownElement);
+		//parent.parentNode.insertBefore(dropdownElement, parent.nextSibling);
+		//parent.parentNode.insertBefore(dropdownElement, parent);
 	},
 	addSelectButton : function(){
-		var selectButton = document.createElement('div');
-		selectButton.style.cssText = UnicodeEmoji.styles.button;
-		selectButton.innerHTML = '😀';
-		selectButton.onclick = function(){
-			UnicodeEmoji.dropdown(this.parent, this);
-		}
-
 		this.returnElements(function(element){
+			var selectButton = document.createElement('div');
+			selectButton.style.cssText = UnicodeEmoji.styles.button;
+			selectButton.innerHTML = '😀';
+			selectButton.onclick = function(){
+				UnicodeEmoji.dropdown(this.parent, this);
+			}
+
+			var rect = element.getBoundingClientRect();
+
 			var computedStyle = window.getComputedStyle(element);
-			selectButton.style.width  = parseInt(computedStyle.fontSize)+5;
-			selectButton.style.height = parseInt(computedStyle.fontSize)+5;
-			selectButton.style.fontSize = parseInt(computedStyle.fontSize);
-			selectButton.style.left   = parseInt(parseInt(computedStyle.width) - parseInt(selectButton.style.width)*1.2);
-			selectButton.style.top    = parseInt(parseInt(computedStyle.height) - parseInt(selectButton.style.height)*1.2);
+			selectButton.style.width  = parseInt(computedStyle.fontSize)+5 + 'px';
+			selectButton.style.height = parseInt(computedStyle.fontSize)+5 + 'px';
+			selectButton.style.fontSize = parseInt(computedStyle.fontSize) + 'px';
+
+			selectButton.style.left = parseInt(parseInt(rect.left) + parseInt(computedStyle.width) - parseInt(selectButton.style.width)*1.5) + 'px';
+			selectButton.style.top   = parseInt(parseInt(rect.top) + parseInt(selectButton.style.height)*1.9) + 'px';
+
 			selectButton.parent       = element;
 
-			window.document.body.insertBefore(selectButton, element);
+			//element.parentNode.insertBefore(selectButton, element);
+
+			window.document.body.appendChild(selectButton);
+			//element.parentNode.insertBefore(selectButton, element.nextSibling);
 		});
 	},
 	returnElements : function(callback){
