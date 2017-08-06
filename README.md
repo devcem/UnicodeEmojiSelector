@@ -6,7 +6,16 @@ This is currently under extremely active development, and you probably shouldn't
 ![UnicodeEmojiSelector](http://imagets.com/shared/unicodeEmoji.jpg)
 
 ## Usage
+
+To include UnicodeEmojiSelector to your HTML file :
+```html
+<script type="text/javascript" src="unicode-emoji.js"></script>
+```
+
+To execute it on your HTML file (You can use any selector) :
+```javascript
 UnicodeEmoji.init('.input');
+```
 
 ## Thanks
 https://github.com/amio/emoji.json
