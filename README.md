@@ -1,5 +1,5 @@
 # UnicodeEmojiSelector
-I know, there are a lot of emoji selector but i couldn't find any selector with only unicode not images. This plugin provides emoji selector without any CSS or image asset requirement. It only has one javascript file to include.
+I know, there are a lot of emoji selector but i couldn't find any selector with only unicode characters not images. This plugin provides emoji selector without any CSS or image asset requirement. It only has single javascript file to include.
 
 This is currently under extremely active development, and you probably shouldn't use it unless you like broken software.
 
